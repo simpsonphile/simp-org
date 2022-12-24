@@ -18,7 +18,12 @@
         "tsConfig": "apps/selfie-timelapse/tsconfig.app.json",
         "assets": [
           "apps/selfie-timelapse/src/favicon.ico",
-          "apps/selfie-timelapse/src/assets"
+          "apps/selfie-timelapse/src/assets",
+          {
+            "input": "libs/shared/src/assets",
+            "glob": "**/*",
+            "output": "assets"
+          }       
         ],
         "styles": ["apps/selfie-timelapse/src/styles.scss"],
         "scripts": [],

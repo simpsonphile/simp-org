@@ -29,6 +29,9 @@
     &:last-child:not(:first-child) {
       margin-left: var(--g2);
     }
+    &:first-child:not(:last-child) {
+      margin-right: var(--g2);
+    }
   }
 
   &VarSecondary {

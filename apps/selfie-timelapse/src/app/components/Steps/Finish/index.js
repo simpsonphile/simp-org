@@ -2,10 +2,13 @@ import { useTimelapseContext } from '../../../contexts/TimelapseContext';
 import { BsDownload } from 'react-icons/bs';
 import { Headline, Header, Button } from '@simp-org/shared';
 import styles from './styles.module.scss';
+import generateGif from '../../../services/generateGif';
+import { useEffect, useState } from 'react';
 
 const Upload = () => {
+  const [gifUrl, setGifUrl] = useState('');
   const {
-    state: { zipURL },
+    state: { zipURL, transformedImages },
     actions: { resetStore, setCurrentStep },
   } = useTimelapseContext();
 
@@ -13,11 +16,17 @@ const Upload = () => {
     setCurrentStep('EDIT');
   };
 
+  useEffect(() => {
+    generateGif(transformedImages, setGifUrl);
+  }, []);
+
   return (
     <div className={styles.Finish}>
       <Header>
         <Headline>Your timelapse is ready to download!</Headline>
       </Header>
+
+      {gifUrl && <img src={gifUrl} alt="ss" />}
 
       <div className={styles.FinishButtons}>
         {!!zipURL && (

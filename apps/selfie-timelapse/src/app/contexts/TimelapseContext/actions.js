@@ -105,9 +105,9 @@ export const generateTimelapse =
     if (transformedImages) {
       setTransformedImages({ dispatch })(transformedImages);
 
-      const url = await generateZipURLFromFiles(transformedImages);
+      const zipUrl = await generateZipURLFromFiles(transformedImages);
 
-      setZipUrl({ dispatch })(url);
+      setZipUrl({ dispatch })(zipUrl);
       setCurrentStep({ dispatch })('FINISH');
     }
 

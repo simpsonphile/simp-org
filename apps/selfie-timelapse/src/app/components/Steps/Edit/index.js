@@ -1,8 +1,14 @@
 import { useTimelapseContext } from '../../../contexts/TimelapseContext';
 import styles from './styles.module.scss';
 import { BsChevronLeft } from 'react-icons/bs';
-import { Button, Card, ImageListPaginated, Spinner, Header, Headline } from '@simp-org/shared';
-
+import {
+  Button,
+  Card,
+  ImageListPaginated,
+  Spinner,
+  Header,
+  Headline,
+} from '@simp-org/shared';
 
 const Upload = () => {
   const {
@@ -14,15 +20,14 @@ const Upload = () => {
     <div>
       {!!images.length && (
         <Header className={styles.EditHeader}>
-          <div className={styles.EditHeaderTitle}>
-            <Button
-              variation="transparent"
-              onClick={() => setCurrentStep('UPLOAD')}
-            >
-              <BsChevronLeft size={28} strokeWidth={2} />
-            </Button>
-            <Headline>Choose uploaded files</Headline>
-          </div>
+          <Button
+            variation="secondary"
+            icoLeft={<BsChevronLeft />}
+            onClick={() => setCurrentStep('UPLOAD')}
+          >
+            Back to upload
+          </Button>
+          <Headline>Choose uploaded files</Headline>
 
           <Button
             className={styles.EditHeaderGenerateBtn}

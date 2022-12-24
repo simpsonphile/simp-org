@@ -18,22 +18,20 @@
 
   &Images {
     position: relative;
-    height: 500px;
+    margin-bottom: -200px;
+
 
     img {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      max-width: 480px;
+      width: 70%;
       border-radius: 8px;
     }
   
     img:nth-child(2) {
-      transform: translate(30%, 50%);
+      transform: translate(30%, -100px);
     }
   
     img:nth-child(3) {
-      transform: translate(10%, 100%);
+      transform: translate(10%, -200px);
     }
 
     @include isTabletBig {
@@ -45,8 +43,6 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    height: 100%;
-    // margin-top: -140px;
     
     &Text {
       margin-bottom: var(--g4);

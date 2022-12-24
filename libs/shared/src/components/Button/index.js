@@ -8,6 +8,7 @@ const Button = forwardRef(
       as: Component = 'button',
       children,
       icoRight,
+      icoLeft,
       className,
       variation,
       ...otherProps
@@ -26,6 +27,7 @@ const Button = forwardRef(
     return (
       <Component ref={ref} {...otherProps} className={classes}>
         <span className={styles.ButtonWrap}>
+          {icoLeft && <span className={styles.ButtonIco}>{icoLeft}</span>}
           <span className={styles.ButtonLabel}>{children}</span>
           {icoRight && <span className={styles.ButtonIco}>{icoRight}</span>}
         </span>
