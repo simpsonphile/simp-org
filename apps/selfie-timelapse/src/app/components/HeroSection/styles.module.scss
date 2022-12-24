@@ -1,0 +1,59 @@
+@import '../../../../../../libs/shared/src/styles/mixins';
+
+.Hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--g5);
+  // height: 70rem;
+  padding: var(--g4) 0;
+
+  @include isTabletBig {
+    flex-direction: row;
+    padding: var(--g6) 0;
+
+    & > * {
+     width: 50%; 
+    }
+  }
+
+  &Images {
+    position: relative;
+    height: 500px;
+
+    img {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      max-width: 480px;
+      border-radius: 8px;
+    }
+  
+    img:nth-child(2) {
+      transform: translate(30%, 50%);
+    }
+  
+    img:nth-child(3) {
+      transform: translate(10%, 100%);
+    }
+
+    @include isTabletBig {
+      order: 1;
+    }
+  }
+
+  &Content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    // margin-top: -140px;
+    
+    &Text {
+      margin-bottom: var(--g4);
+    }
+
+    @include isTabletBig {
+      order: 2;
+    }
+  }
+}

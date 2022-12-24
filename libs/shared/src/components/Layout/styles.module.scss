@@ -1,0 +1,22 @@
+@import '../../styles/mixins';
+
+.Layout {
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 var(--g4) var(--g4);
+
+
+  @include isTablet {
+    padding: 0 var(--g5) var(--g5);
+  }
+}
+
+.Header {
+  padding: var(--g5) 0;
+}
+
+.Footer {
+  text-align: center;
+  padding: var(--g4) 0;
+}

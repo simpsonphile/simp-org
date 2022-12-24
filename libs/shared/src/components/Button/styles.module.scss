@@ -1,0 +1,53 @@
+.Button {
+  display: inline-block;
+  cursor: pointer;
+  width: fit-content;
+  text-decoration: none;
+  line-height: 40px;
+  text-align: center;
+  height: 40px;
+  min-width: 120px;
+  padding: 0 var(--g3);
+  border: 0;
+  outline: 0;
+  border-radius: var(--radius);
+  color: var(--text-inverted);
+  background-color: var(--primary);
+  transition: all .3s;
+
+  &Wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &:hover {
+    opacity: .9;
+  }
+
+  &Ico {
+    &:last-child:not(:first-child) {
+      margin-left: var(--g2);
+    }
+  }
+
+  &VarSecondary {
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    background-color: transparent;
+  }
+
+  &VarTransparent {
+    background-color: transparent;
+    height: auto;
+    width: auto;
+    min-width: 0;
+    padding: 0;
+    color: var(--primary);
+
+    &:disabled {
+      opacity: .5;
+    }
+  }
+}
+

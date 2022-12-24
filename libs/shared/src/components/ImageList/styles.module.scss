@@ -1,0 +1,41 @@
+@import '../../styles/mixins';
+
+.ImageList {
+  display: grid;
+  gap: var(--g3);
+
+  grid-template-columns: repeat(1, 1fr);
+
+  @include isMobileBig {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include isTablet {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include isTabletBig {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include isLaptop {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  img {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    border-radius: 4px;
+
+    transition: all .3s;
+
+    &:hover {
+      opacity: .9;
+    }
+  }
+
+  &ImageDisabled {
+    filter: grayscale(100%);
+  }
+}
