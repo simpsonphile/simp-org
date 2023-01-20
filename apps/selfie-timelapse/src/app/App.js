@@ -1,9 +1,10 @@
 import 'normalize.css';
-import {Layout, ProgressBar} from '@simp-org/shared';
+import { Layout, ProgressBar } from '@simp-org/shared';
 import { STEPS, useTimelapseContext } from './contexts/TimelapseContext';
 import Upload from './components/Steps/Upload';
 import Edit from './components/Steps/Edit';
 import Finish from './components/Steps/Finish';
+import Logo from './components/Logo';
 
 function App() {
   const {
@@ -24,7 +25,7 @@ function App() {
   };
 
   return (
-    <Layout>
+    <Layout logo={<Logo />}>
       {timelapseLoading && (
         <ProgressBar done={progress} parts={images.length} />
       )}

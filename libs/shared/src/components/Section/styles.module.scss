@@ -1,0 +1,13 @@
+.Section {
+  padding: var(--g6) 0;
+
+  .SectionPart:not(:last-child) {
+    margin-bottom: var(--g4);
+  }
+}
+
+.SectionActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

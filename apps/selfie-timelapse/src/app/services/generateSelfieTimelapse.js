@@ -1,6 +1,6 @@
 import FaceDataService from './FaceDataService';
 
-const getImgFromSrc = ({ src }) => {
+const getImgFromSrc = (src) => {
   const img = document.createElement('img');
   img.src = src;
   return img;
@@ -49,7 +49,7 @@ const generateImagesFromFiles = async (files) => {
   const promises = files.map(
     (src) =>
       new Promise((resolve) => {
-        const source = getImgFromSrc({ src });
+        const source = getImgFromSrc(src);
 
         source.onload = (e) => {
           resolve({

@@ -8,23 +8,19 @@ import {
 
 export const STEPS = {
   UPLOAD: 'UPLOAD',
-  EDIT: 'EDIT',
   FINISH: 'FINISH',
 };
 
 const initialState = {
   currentStep: STEPS.UPLOAD,
-  progress: 0,
-  images: [],
-  disabledImages: [],
-  transformedImages: [],
-  zipURL: '',
-  timelapseLoading: false,
+  photo: undefined,
+  photoFixed: undefined,
+  photoFixedLoading: false,
 };
 
-const TimelapseContext = createContext({ ...initialState });
+const PassportPhotoContext = createContext({ ...initialState });
 
-export const useTimelapseContext = () => useContext(TimelapseContext);
+export const usePassportPhotoContext = () => useContext(PassportPhotoContext);
 
 const reducer = (state, action) => {
   const { type } = action;
@@ -34,26 +30,21 @@ const reducer = (state, action) => {
       return {
         ...initialState,
       };
-    case ACTION_NAMES.INCREMENT_PROGRESS:
-      return {
-        ...state,
-        progress: state.progress + 1,
-      };
     default:
       return basicReducer(state, action);
   }
 };
 
-const TimelapseContextProvider = ({ children }) => {
+const PassportPhotoContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const actions = bindDispatchToActions(ACTIONS, dispatch, () => state);
 
   return (
-    <TimelapseContext.Provider value={{ state, actions }}>
+    <PassportPhotoContext.Provider value={{ state, actions }}>
       {children}
-    </TimelapseContext.Provider>
+    </PassportPhotoContext.Provider>
   );
 };
 
-export default TimelapseContextProvider;
+export default PassportPhotoContextProvider;

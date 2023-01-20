@@ -1,10 +1,8 @@
-import Logo from '../Logo';
+// import Logo from '../Logo';
 import styles from './styles.module.scss';
 
-const Header = () => (
-  <header className={styles.Header}>
-    <Logo />
-  </header>
+const Header = ({ children }) => (
+  <header className={styles.Header}>{children}</header>
 );
 
 export default Header;

@@ -1,4 +1,4 @@
-export const basicReducer = (state, action) => {
+const basicReducer = (state, action) => {
   const setRegExp = /set:(?<field>[A-Za-z]+)/;
   if (action.type.match(setRegExp)) {
     const {
@@ -9,3 +9,5 @@ export const basicReducer = (state, action) => {
 
   return state;
 };
+
+export default basicReducer;

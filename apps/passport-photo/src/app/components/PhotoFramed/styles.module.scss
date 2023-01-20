@@ -1,0 +1,11 @@
+.PhotoFramed {
+  width: fit-content;
+  background-color: white;
+  padding: var(--g1);
+  box-shadow: var(--box-shadow);
+  border-radius: var(--radius);
+
+  img {
+    border-radius: var(--radius);
+  }
+}
