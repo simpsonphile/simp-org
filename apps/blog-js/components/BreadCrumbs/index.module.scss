@@ -1,0 +1,11 @@
+.BreadCrumbs {
+  display: flex;
+  & > * {
+    text-decoration: none;
+    &:not(:last-child) {
+      &::after {
+        content: '/';
+      }
+    }
+  }
+}
