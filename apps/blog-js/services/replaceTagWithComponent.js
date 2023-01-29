@@ -1,8 +1,7 @@
 import Image from "next/image";
 import jsdom from 'jsdom';
-import ReactDOMServer from 'react-dom/server';
 
-const replace = (children, component, tag) => {
+const replace = (children, component, tag, ReactDOMServer) => {
   return children?.map((el) => {
     if (el?.children?.length) {
       return {
@@ -34,7 +33,8 @@ const replace = (children, component, tag) => {
 
 
 // todo move component and tag prop as func arg 
-const replaceTagWithComponent = () => (tree) => {
+const replaceTagWithComponent = (ReactDOMServer) => () => (tree, ...args) => {
+  console.log(args);
     if (!Array.isArray(tree.children)) return tree;
     return { 
       ...tree, 
@@ -42,6 +42,7 @@ const replaceTagWithComponent = () => (tree) => {
         tree.children,
         (el) => (<Image src={el.properties.src} width={720} height={300} />),
         'img',
+        ReactDOMServer,
         )
     }
 }

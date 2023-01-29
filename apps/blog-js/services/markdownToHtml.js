@@ -8,9 +8,11 @@ import rehypeToc from 'rehype-toc';
 import rehypeSlug from 'rehype-slug';
 import { read } from 'to-vfile';
 import remarkFrontmatter from 'remark-frontmatter';
-import replaceTagWithComponent from './replaceTagWithComponent';
+// import replaceTagWithComponent from './replaceTagWithComponent';
 
 const markdownToHtml = async (file) => {
+  // const ReactDOMServer = (await import('react-dom/server')).default;
+
   const processed = await unified()
   .use(remarkFrontmatter)
   .use(remarkParse)
@@ -20,7 +22,7 @@ const markdownToHtml = async (file) => {
   .use(rehypeToc)
   .use(rehypeHighlight)
   .use(rehypeStringify)
-  .use(replaceTagWithComponent)
+  // .use(replaceTagWithComponent(ReactDOMServer))
   .process(await read(file))
 
   return String(processed);

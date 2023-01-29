@@ -15,7 +15,7 @@ const divideUrlToParts = (slug) => slug.split('/').filter((e) => !!e).reduce((pr
 const BreadCrumbs = ({ slug }) => {
   return (
     <div className={styles.BreadCrumbs}>
-      {divideUrlToParts(slug).map((part) => <Link key={part.href} href={part.url}>{part.label}</Link>)}
+      {divideUrlToParts(slug).map((part) => <Link key={part.url} href={part.url}>{part.label}</Link>)}
     </div>
   );
 }

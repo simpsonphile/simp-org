@@ -8,7 +8,7 @@ const PostHero = ({ title, img, readingTime, tags, date, slug}) => {
   return (
     <header className={styles.PostHero}>
       <div className={styles.PostHeroInside}>
-        {date && <div>{date}</div>}
+        {date && <p>{date}</p>}
         {title && (<Headline tag="h1" className={styles.PostHeroTitle}>{title}</Headline>)}
 
         <BreadCrumbs slug={slug} />
@@ -19,7 +19,7 @@ const PostHero = ({ title, img, readingTime, tags, date, slug}) => {
           )}
 
           {readingTime && (
-            <time className={styles.PostHeroReadingTime}>{readingTime} min</time>
+            <time className={styles.PostHeroReadingTime}>{readingTime} min to read</time>
           )}
         </div>
       </div>

@@ -1,3 +1,19 @@
 .Search {
-  width: 120px;
+  position: relative;
+}
+
+.SearchButton {
+  svg {
+    fill: var(--color-primary);
+  }
+}
+
+.SearchSelectWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.SearchSelect {
+  width: 200px;
 }
