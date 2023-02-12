@@ -2,10 +2,10 @@ import { BiCommentAdd } from 'react-icons/bi';
 import ButtonClean from '../ButtonClean';
 import styles from './index.module.scss';
 
-const AddCommentButton = ({ link }) => (
-  <ButtonClean className={styles.AddCommentButton}>
-    <BiCommentAdd />
+const AddCommentButton = () => (
+  <ButtonClean className={styles.AddCommentButton} aria-label="add comment">
+    <BiCommentAdd size={24} />
   </ButtonClean>
-)
+);
 
 export default AddCommentButton;

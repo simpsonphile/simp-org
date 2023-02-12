@@ -1,7 +1,7 @@
 .LayoutInner {
   max-width: calc(75ch + var(--g-5));
   margin: 0 auto;
-  padding: 0 var(--g-4);
+  padding: 0 var(--g-4) var(--g-4) var(--g-4);
 }
 
 .LayoutHeader {

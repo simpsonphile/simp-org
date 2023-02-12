@@ -1,13 +1,13 @@
 import { Open_Sans } from '@next/font/google';
 import 'normalize.css';
-import '/index.css';
+import '/index.scss';
 
-const openSans = Open_Sans({ weight: ['400'], subsets: ['latin']});
+const openSans = Open_Sans({ weight: ['400'], subsets: ['latin'] });
 
 function CustomApp({ Component, pageProps }) {
   return (
     <main className={openSans.className}>
-        <Component {...pageProps} />
+      <Component {...pageProps} />
     </main>
   );
 }

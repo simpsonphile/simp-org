@@ -5,6 +5,7 @@
   margin: 0 calc(-1 * var(--g-5)) var(--g-4);
   padding: var(--g-5);
   border-radius: var(--radius-m);
+  color: var(--color-text-light-s-2);
 
   &Inside {
     display: flex;
@@ -26,11 +27,6 @@
     flex-wrap: wrap;
     justify-content: space-between;
   }
-
-  &ReadingTime {
-    color: var(--color-text-light);
-  }
-
 
   &::before {
     content: '';

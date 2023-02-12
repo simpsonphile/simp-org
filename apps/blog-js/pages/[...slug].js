@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import markdownToHtml from '/services/markdownToHtml';
 import markdownFrontMatterToData from '/services/markdownFrontMatterToData';
 import getDocBySlug from '/services/getDocBySlug';
@@ -7,38 +6,21 @@ import Layout from '/components/Layout';
 import PostHero from '/components/PostHero';
 import PostContent from '/components/PostContent';
 import RelatedPosts from '/components/RelatedPosts';
+import PostHead from '/components/PostHead';
+import Giscus from '/components/Giscus';
 
-export default function Post ({ content, metadata, links, slug }) {
+export default function Post({ content, metadata, links, slug }) {
   return (
     <Layout links={links}>
-      <Head>
-        <title>{metadata.title}</title>
-        <meta property="og:title" content={metadata.title} key="title" />
-        <meta property="description" content={metadata.description} />
-      </Head>
-      <PostHero slug={slug} {...metadata} />
-      <PostContent>
-        {content}
-      </PostContent>
-      <RelatedPosts  />
-
-      <script src="https://giscus.app/client.js"
-        data-repo="simp-org"
-        data-repo-id="simp-org"
-        data-category="[ENTER CATEGORY NAME HERE]"
-        data-category-id="[ENTER CATEGORY ID HERE]"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="preferred_color_scheme"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
+      <article>
+        <PostHead {...metadata} />
+        <PostHero slug={slug} {...metadata} />
+        <PostContent>{content}</PostContent>
+        <RelatedPosts />
+        <Giscus />
+      </article>
     </Layout>
-  )
+  );
 }
 
 export async function getStaticProps({ params }) {

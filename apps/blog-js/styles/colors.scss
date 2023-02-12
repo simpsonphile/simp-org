@@ -1,0 +1,43 @@
+
+
+$themes: (
+  "text-light": #f6f8f8,
+  "text-dark": #0f191f,
+  "dark": (
+    "primary":#cb79f1,
+    "text": #f6f8f8,
+    "bg": #0f191f,
+  ),
+  "light": (
+    "primary":#2083c5,
+    "text": #0f191f,
+    "bg": #f6f8f8,
+  )
+);
+
+:root {
+  --color-text-light: #f6f8f8;
+  --color-text-dark: #0f191f;
+}
+
+@each $themeName, $theme in $themes {
+  @if type-of($theme) =='map' {
+    [data-theme="#{$themeName}"] {
+      @each $colorName, $colorValue in $theme {
+        --color-#{$colorName}: #{$colorValue};
+        --color-#{$colorName}-t-1: #{mix(white, $colorValue, 10%)};
+        --color-#{$colorName}-t-2: #{mix(white, $colorValue, 20%)};
+        --color-#{$colorName}-s-1: #{mix(black, $colorValue, 10%)};
+        --color-#{$colorName}-s-2: #{mix(black, $colorValue, 20%)};
+      }
+    }
+  } @else {
+    :root {
+      --color-#{$themeName}: #{$theme};
+      --color-#{$themeName}-t-1: #{mix(white, $theme, 10%)};
+      --color-#{$themeName}-t-2: #{mix(white, $theme, 20%)};
+      --color-#{$themeName}-s-1: #{mix(black, $theme, 10%)};
+      --color-#{$themeName}-s-2: #{mix(black, $theme, 20%)};
+    }
+  }
+}

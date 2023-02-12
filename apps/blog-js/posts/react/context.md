@@ -44,8 +44,6 @@ export const useRecipes = () => {
   }
 ```
 
-![dudu](/static/context-api.webp)
-
 ## Adding logic to provider
 
 ```js
@@ -94,7 +92,7 @@ Currently the only way we can add recipe is by dispatching and action
     payload: {
       id: 10,
       title: 'pasta with egg',
-      prepTime: '150min',
+      prepTime: 150,
       ...
     }
   })
@@ -136,7 +134,7 @@ const { state, dispatch } = useRecipes();
     payload: {
       id: 10,
       title: 'pasta with egg',
-      prepTime: '150min',
+      prepTime: 150,
       ...
     }
   })
@@ -366,13 +364,72 @@ const reducer = (state, action) => {
 
 ## Add selectors 
 
+Oftentimes we need something more than getting raw data from state like particular item with id from collection or in recipes example or one that is between some preparation time. Such logic can be put into selectors for reusability and to make our components separate from logic
+
+example selectors where first returns recipe by id
+and second that returns recipes that are between 30 to 60 cooking time:
+
 ```js
-  // selectors.js
-  const selectRecipeById = (state, id) => {
-    return state.recipes[id];
-  }
+// selectors.js
+export const selectRecipeById = (state) => (id) => state?.recipes?.[id];
+export const selectRecipeByCookingTime = (state) => ({ minCookingTime, maxCookingTime }) => 
+  state.recipes.filter(({ prepTime }) => prepTime >= minCookingTime && prepTime.maxCookingTime);
 ```
 
+Now we can add selectors to our context so consumers can use them:
+```js
+// context.js
+import bindContextToActions from './helpers/bindContextToActions.js';
+import * as actions from './actions.js';
+import * as selectors from './selectors.js';
+export const RecipesContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    <RecipesContext.Provider value={{ 
+      state,
+      actions: bindContextToActions(actions, dispatch, () => state),
+      selectors: bindContextToActions(selectors, dispatch, () => state)}}>
+      {children}
+    </RecipesContext.Provider>
+  )
+}
+```
+
+now in consumer:
+```js
+  const { selectors: getRecipeByCookingTime } = useRecipes();
+  
+  console.log(getRecipeByCookingTime({ minCookingTime: 30, maxCookingTime: 45 }));
+```
+## Performance Problems with complex contexts
+react context rerenders every consumer when value passed to provider changes. This can slow down your UI.
+### Split context to few smaller
+
+good idea is to split context into few smaller ones. Lets imagine our context with recipes has additional recipeCategory property:
+```js
+  const initialState = {
+    recipes: {},
+    recipeCategories: {}
+  }
+```
+Now imagine we have 2 components:
+- one that renders single recipe
+- second that renders all recipe categories
+if recipes is modified all consumers will rerender: single recipe component and recipe categories component. This is unnecessary and could be omitted by splitting context to smaller cones.
+### split context to state/selectors/actions
+coming soon
+### write proxy (like useSelector in redux)
+proxy will accept dep array and rerender component only when dep array changed...
+...coming soon
+## automate writing contexts with plop.js
+coming soon
+## save context state in localstorage 
+Add unique id to contextProvider as prop
+Add onStateUpdateEnd method that runs after dispatch and saves new state in localstorage to context-${uniqueId} property
+Add onContextLoaded method that checks and loads state from localstorage by context-${uniqueId} property
+```js
+```
+## final toughs
+I think that my contexts are to big. maybe some external package. ...coming soon
 ## Debug provider with react dev tools
-
-
+coming soon

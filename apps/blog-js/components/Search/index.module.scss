@@ -1,3 +1,54 @@
 .Search {
   width: 120px;
+  position: relative;
+}
+
+.SearchButton {
+  position: relative;
+  z-index: 2;
+  svg {
+    fill: var(--color-primary);
+  }
+}
+
+.SearchSelectWrapper {
+  display: none;
+  position: absolute;
+  top: calc(50% - 24px);
+  right: calc(100% - 32px);
+}
+
+.SearchSelectWrapperVisible {
+  display: block;
+}
+
+.SearchSelect {
+  width: 200px;
+
+  :global(.SearchSelect__control) {
+    background-color: var(--color-bg-t-1);
+    padding: var(--g-3) var(--g-5) var(--g-3) var(--g-3);
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-sm);
+  }
+
+
+  :global(.SearchSelect__menu) {
+    border-bottom-left-radius: var(--radius-sm);
+    border-bottom-right-radius: var(--radius-sm);
+    padding-bottom: var(--g-3);
+    background-color: var(--color-bg-t-1);
+  }
+
+  :global(.SearchSelect__placeholder) {
+    opacity: .5;
+  }
+
+  :global(.SearchSelect__option) {
+    padding: var(--g-2);
+  }
+
+  :global(.SearchSelect__option--is-focused) {
+    background-color: var(--color-primary);
+  }
 }
