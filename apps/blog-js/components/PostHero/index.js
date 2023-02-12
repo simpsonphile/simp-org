@@ -1,7 +1,7 @@
 import styles from './index.module.scss';
 import Image from 'next/image';
 import Tags from '../Tags';
-// import BreadCrumbs from '../BreadCrumbs';
+import BreadCrumbs from '../BreadCrumbs';
 import Headline from '../Headline';
 
 const PostHero = ({ title, img, readingTime, tags, date, slug }) => {
@@ -19,7 +19,7 @@ const PostHero = ({ title, img, readingTime, tags, date, slug }) => {
           </Headline>
         )}
 
-        {/* <BreadCrumbs slug={slug} /> */}
+        <BreadCrumbs slug={slug} />
 
         <div className={styles.PostHeroFooter}>
           {tags?.length && <Tags tags={tags} />}

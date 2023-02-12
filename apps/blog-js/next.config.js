@@ -21,11 +21,6 @@ const nextConfig = {
 
     const links = await getAllDocs();
 
-    console.log({
-      '/': { page: '/' },
-      ...Object.fromEntries(links.map((link) => [link, { page: link }])),
-    });
-
     return {
       '/': { page: '/' },
       ...Object.fromEntries(
