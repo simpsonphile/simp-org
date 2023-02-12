@@ -29,7 +29,7 @@ const nextConfig = {
     return {
       '/': { page: '/' },
       ...Object.fromEntries(
-        links.map((link) => ['/' + link, { page: '/' + link }])
+        links.map((link) => ['/' + link, { page: '/[...slug]' }])
       ),
     };
   },
