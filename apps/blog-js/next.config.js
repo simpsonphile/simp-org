@@ -14,7 +14,9 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
-  exportPathMap: async function () {
+  exportPathMap: async function (defaultPathMap, { dev }) {
+    if (dev) return defaultPathMap;
+
     const getAllDocs = await await (
       await import('./services/getAllDocs.js')
     ).default;
@@ -29,8 +31,7 @@ const nextConfig = {
     };
   },
   images: {
-    loader: 'akamai',
-    path: '',
+    unoptimized: true,
   },
 };
 

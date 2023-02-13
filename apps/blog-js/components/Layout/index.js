@@ -5,7 +5,6 @@ import ThemeSwitch from '../ThemeSwitch';
 import StickyTop from '../StickyTop';
 import Search from '../Search';
 import AddCommentButton from '../AddCommentButton';
-import Tooltip from '../Tooltip';
 import Logo from '../Logo';
 import NewsletterModal from '../Modals/Newsletter';
 
@@ -19,15 +18,9 @@ const Layout = ({ children, links }) => {
       {children}
       {/* <LayoutFooter /> */}
       <StickyTop>
-        <Tooltip content="switch theme">
-          <ThemeSwitch />
-        </Tooltip>
-        <Tooltip content="Add comment">
-          <AddCommentButton />
-        </Tooltip>
-        <Tooltip content="search">
-          <Search links={links} />
-        </Tooltip>
+        <ThemeSwitch />
+        <AddCommentButton />
+        <Search links={links} />
       </StickyTop>
       <NewsletterModal />
     </LayoutInner>

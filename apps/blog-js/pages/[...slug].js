@@ -8,16 +8,19 @@ import PostContent from '/components/PostContent';
 import RelatedPosts from '/components/RelatedPosts';
 import PostHead from '/components/PostHead';
 import Giscus from '/components/Giscus';
+import ClientOnly from '../components/ClientOnly';
 
 export default function Post({ content, metadata, links, slug }) {
   return (
     <Layout links={links}>
       <article>
-        <PostHead {...metadata} />
+        <PostHead {...metadata} url={slug} />
         <PostHero slug={slug} {...metadata} />
         <PostContent>{content}</PostContent>
         <RelatedPosts />
-        <Giscus />
+        <ClientOnly>
+          <Giscus />
+        </ClientOnly>
       </article>
     </Layout>
   );

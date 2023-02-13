@@ -12,9 +12,9 @@ const Giscus = () => (
     data-input-position="bottom"
     data-theme="preferred_color_scheme"
     data-lang="en"
-    crossorigin="anonymous"
-    async>
-  </script>
-)
+    crossOrigin="anonymous"
+    async
+  />
+);
 
 export default Giscus;

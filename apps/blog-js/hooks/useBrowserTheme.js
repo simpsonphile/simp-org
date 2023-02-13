@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react';
 
 const useBrowserTheme = () => {
   const [theme, setTheme] = useState(null);
 
-  const callback = e => {
-    setTheme(e.matches ? 'dark' : 'light')
-  }
+  const callback = (e) => {
+    setTheme(e.matches ? 'dark' : 'light');
+  };
 
   useEffect(() => {
     if (typeof window === 'object') {
@@ -16,12 +16,14 @@ const useBrowserTheme = () => {
 
     return () => {
       if (typeof window === 'object') {
-        window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', callback);
+        window
+          .matchMedia('(prefers-color-scheme: dark)')
+          .removeEventListener('change', callback);
       }
-    }
+    };
   }, []);
 
   return theme;
-}
+};
 
 export default useBrowserTheme;

@@ -6,12 +6,12 @@ const divideUrlToParts = (slug) =>
     .split('/')
     .filter((e) => !!e)
     .reduce(
-      (prev, cur) => {
+      (prev, cur, i) => {
         return [
           ...prev,
           {
             label: cur,
-            url: prev[prev.length - 1].url + '/' + cur,
+            url: i === 0 ? '/' + cur : prev[prev.length - 1].url + '/' + cur,
           },
         ];
       },

@@ -1,4 +1,5 @@
-import Select from 'react-select';
+import dynamic from 'next/dynamic';
+// import Select from 'react-select';
 import { BiSearch } from 'react-icons/bi';
 import { useRouter } from 'next/router';
 import ButtonClean from '../ButtonClean';
@@ -7,6 +8,8 @@ import { useClickAway } from 'react-use';
 import styles from './index.module.scss';
 import classNames from 'classnames';
 import { useId } from 'react';
+
+const Select = dynamic(() => import('react-select'));
 
 const Search = ({ links }) => {
   const selectId = useId();
@@ -22,9 +25,6 @@ const Search = ({ links }) => {
 
   const onBtnClick = () => {
     setIsOpen((prev) => !prev);
-    if (!isOpen) {
-      selectRef.current.focus();
-    }
   };
 
   useClickAway(ref, () => setIsOpen(false));
@@ -43,18 +43,20 @@ const Search = ({ links }) => {
           [styles.SearchSelectWrapperVisible]: isOpen,
         })}
       >
-        <Select
-          ref={selectRef}
-          instanceId={selectId}
-          className={styles.SearchSelect}
-          classNamePrefix="SearchSelect"
-          placeholder="Search post"
-          components={{ DropdownIndicator: null, IndicatorSeparator: null }}
-          options={links.map((link) => ({ label: link, value: link }))}
-          unstyled
-          isSearchable
-          onChange={onChange}
-        />
+        {isOpen && (
+          <Select
+            ref={selectRef}
+            instanceId={selectId}
+            className={styles.SearchSelect}
+            classNamePrefix="SearchSelect"
+            placeholder="Search post"
+            components={{ DropdownIndicator: null, IndicatorSeparator: null }}
+            options={links.map((link) => ({ label: link, value: link }))}
+            unstyled
+            isSearchable
+            onChange={onChange}
+          />
+        )}
       </div>
     </div>
   );

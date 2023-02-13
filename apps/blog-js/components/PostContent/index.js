@@ -1,7 +1,10 @@
 import styles from './index.module.scss';
 
-const PostContent = ({children}) => (
-  <div className={styles.PostContent} dangerouslySetInnerHTML={{__html: children}} />
-)
+const PostContent = ({ children }) => (
+  <div
+    dangerouslySetInnerHTML={{ __html: children }}
+    className={styles.PostContent}
+  />
+);
 
 export default PostContent;
