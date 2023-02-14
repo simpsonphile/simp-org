@@ -7,7 +7,7 @@ import ButtonClean from '../ButtonClean';
 
 const ThemeSwitch = () => {
   const [currentTheme, setCurrentTheme] = useState('theme');
-  const [lsTheme, setLSTheme] = useLocalStorage('theme', null);
+  const [lsTheme, setLSTheme] = useLocalStorage('theme', 'dark');
   const browserTheme = useBrowserTheme();
 
   const setTheme = (newTheme) => {

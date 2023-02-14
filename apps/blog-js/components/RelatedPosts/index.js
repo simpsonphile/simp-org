@@ -1,11 +1,15 @@
-import Header from "../Header";
-import Headline from "../Headline";
-import PostCard from "../PostCard";
+import Header from '../Header';
+import Headline from '../Headline';
+import PostCard from '../PostCard';
 import styles from './index.module.scss';
 
-const RelatedPosts = ({ link }) => {
-  const prevPost = 'react/context';
-  const nextPost = 'react/custom-hooks/use-refered-scheme/context';
+const RelatedPosts = ({ links, slug }) => {
+  const currentIndex = links.indexOf(slug);
+  const lastIndex = links.length - 1;
+  const prevIndex = currentIndex - 1 > 0 ? currentIndex - 1 : currentIndex;
+  const nextIndex = currentIndex + 1 > lastIndex ? lastIndex : currentIndex + 1;
+  const prevPost = links[prevIndex];
+  const nextPost = links[nextIndex];
 
   return (
     <section className={styles.RelatedPosts}>
@@ -17,7 +21,7 @@ const RelatedPosts = ({ link }) => {
         <PostCard subtitle="next" title={nextPost} link={nextPost} />
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default RelatedPosts;

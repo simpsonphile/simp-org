@@ -17,7 +17,7 @@ export default function Post({ content, metadata, links, slug }) {
         <PostHead {...metadata} url={slug} />
         <PostHero slug={slug} {...metadata} />
         <PostContent>{content}</PostContent>
-        <RelatedPosts />
+        <RelatedPosts slug={slug} links={links} />
         <ClientOnly>
           <Giscus />
         </ClientOnly>
