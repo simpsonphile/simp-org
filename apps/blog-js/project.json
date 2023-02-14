@@ -57,6 +57,12 @@
       "options": {
         "lintFilePatterns": ["apps/blog-js/**/*.{ts,tsx,js,jsx}"]
       }
+    },
+    "pustbuild": {
+      "executor": "@nrwl/workspace:run-script",
+      "options": {
+        "script": "next-sitemap --config apps/blog-js/next-sitemap.config.js"
+      }
     }
   },
   "tags": []
