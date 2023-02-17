@@ -1,10 +1,10 @@
 .StickyTop {
   position: fixed;
   top: var(--g-6);
-  right: var(--g-5);
+  right: var(--g-6);
   z-index: 100;
   display: flex;
-  gap: var(--g-2);
+  gap: var(--g-4);
   flex-direction: column;
   width: 2.4rem;
 }

@@ -4,7 +4,7 @@ import styles from './index.module.scss';
 
 const AddCommentButton = () => (
   <ButtonClean className={styles.AddCommentButton} aria-label="add comment">
-    <BiCommentAdd size={24} />
+    <BiCommentAdd size={32} />
   </ButtonClean>
 );
 

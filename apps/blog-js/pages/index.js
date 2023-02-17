@@ -1,28 +1,32 @@
 import Layout from '/components/Layout';
-import Link from 'next/link';
 import getAllDocs from '/services/getAllDocs';
+import PostList from '/components/PostList';
+import Headline from '/components/Headline';
+import Header from '/components/Header';
+import Section from '/components/Section';
 
-export default function Posts({ links }) {
+export default function Posts({ docs }) {
   return (
-    <Layout links={links}>
-      <h1>Posts</h1>
-      <ul>
-        {links.map((slug) => (
-          <li key={slug}>
-            <Link href={slug}>{slug}</Link>
-          </li>
-        ))}
-      </ul>
+    <Layout links={docs.map(({ path }) => path)}>
+      <Section>
+        <Header>
+          <Headline tag="h1" size="xl" decorator=">">
+            All posts
+          </Headline>
+        </Header>
+
+        <PostList docs={docs} />
+      </Section>
     </Layout>
   );
 }
 
 export async function getStaticProps() {
-  const links = await getAllDocs();
+  const docs = await getAllDocs();
 
   return {
     props: {
-      links,
+      docs,
     },
   };
 }

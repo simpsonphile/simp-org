@@ -8,19 +8,19 @@ import rehypeToc from 'rehype-toc';
 import rehypeSlug from 'rehype-slug';
 import { read } from 'to-vfile';
 import remarkFrontmatter from 'remark-frontmatter';
-import replaceTagWithComponent from './replaceTagWithComponent';
+import remarkBlockquotesExtended from 'remark-blockquotes-extended';
 
 const markdownToHtml = async (file) => {
   const processed = await unified()
     .use(remarkFrontmatter)
     .use(remarkParse)
     .use(remarkGfm)
+    .use(remarkBlockquotesExtended)
     .use(remarkRehype)
     .use(rehypeSlug)
     .use(rehypeToc)
     .use(rehypeHighlight)
     .use(rehypeStringify)
-    .use(replaceTagWithComponent)
     .process(await read(file));
 
   return String(processed);

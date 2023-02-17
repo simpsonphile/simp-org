@@ -346,6 +346,8 @@ const reducer = (state, action) => {
 
 ## Add Immer to simplify reducer even more
 
+[updating complex state](/updating-complex-state)
+
 ```js
   import produce from 'immer';
 

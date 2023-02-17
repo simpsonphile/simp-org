@@ -36,7 +36,7 @@ const Search = ({ links }) => {
         aria-label="show search input"
         onClick={onBtnClick}
       >
-        <BiSearch size={24} />
+        <BiSearch size={32} />
       </ButtonClean>
       <div
         className={classNames(styles.SearchSelectWrapper, {

@@ -1,48 +1,26 @@
 .PostHero {
   position: relative;
   overflow: hidden;
-  height: 400px;
-  margin: 0 calc(-1 * var(--g-5)) var(--g-4);
-  padding: var(--g-5);
-  border-radius: var(--radius-m);
-  color: var(--color-text-light-s-2);
+  margin: 0 0 var(--g-6) calc(-1 * var(--g-6));
+  width: calc(100% + var(--g-6));
+  padding: var(--g-6) var(--g-5);
+  color: var(--color-text-s-2);
 
-  &Inside {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: var(--g-4);
-    width: 100%;
-    height: 100%;
-    position: relative;
-    z-index: 1;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--g-4);
+  width: 100%;
+  height: 100%;
+
 
   &Title {
-    color: var(--color-text-light);
+    color: var(--color-text);
   }
 
   &Footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-  }
-
-  &::before {
-    content: '';
-
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 0;
-    display: block;
-
-    background-color: rgba(0,0,0,0.8);
-  }
-
-  img {
-    z-index: -1;
   }
 }

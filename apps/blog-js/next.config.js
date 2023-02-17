@@ -26,7 +26,7 @@ const nextConfig = {
     return {
       '/': { page: '/' },
       ...Object.fromEntries(
-        links.map((link) => ['/' + link, { page: '/[...slug]' }])
+        links.map(({ path }) => ['/' + path, { page: '/[...slug]' }])
       ),
     };
   },

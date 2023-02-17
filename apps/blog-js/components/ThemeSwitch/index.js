@@ -40,7 +40,7 @@ const ThemeSwitch = () => {
       aria-label="switch theme"
       onClick={onClick}
     >
-      {currentTheme === 'dark' ? <BiMoon size={24} /> : <BiSun size={24} />}
+      {currentTheme === 'dark' ? <BiMoon size={32} /> : <BiSun size={32} />}
     </ButtonClean>
   );
 };

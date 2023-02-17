@@ -27,7 +27,7 @@ export default function Post({ content, metadata, links, slug }) {
 }
 
 export async function getStaticProps({ params }) {
-  const links = await getAllDocs();
+  const docs = await getAllDocs();
   const file = getDocBySlug(params.slug.join('/'));
 
   const content = await markdownToHtml(file);
@@ -37,7 +37,7 @@ export async function getStaticProps({ params }) {
     props: {
       content,
       metadata,
-      links,
+      links: docs.map(({ path }) => path),
       slug: params.slug.join('/'),
     },
   };
@@ -50,7 +50,7 @@ export async function getStaticPaths() {
     paths: docs.map((doc) => {
       return {
         params: {
-          slug: doc.split('/'),
+          slug: doc.path.split('/'),
         },
       };
     }),
