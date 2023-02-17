@@ -2,15 +2,12 @@ import styles from './index.module.scss';
 import Tags from '../Tags';
 import BreadCrumbs from '../BreadCrumbs';
 import Headline from '../Headline';
+import Date from '../Date';
 
 const PostHero = ({ title, readingTime, tags, date, slug }) => {
   return (
     <header className={styles.PostHero}>
-      {date && (
-        <Headline tag="p" size="xs">
-          {date}
-        </Headline>
-      )}
+      {date && <Date>{date}</Date>}
       {title && (
         <Headline tag="h1" size="xl" className={styles.PostHeroTitle}>
           {title}

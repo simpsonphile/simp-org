@@ -1,4 +1,7 @@
 .PostContent {
+  max-width: calc(75ch + var(--g-5));
+  margin: 0 auto;
+  
   :global {
     img { 
       display: block;

@@ -26,7 +26,13 @@ $themes: (
         @for $i from 1 through 9 {
           --color-#{$colorName}-t-#{$i * 100}: #{mix(white, $colorValue, $i * 10%)};
           --color-#{$colorName}-s-#{$i * 100}: #{mix(black, $colorValue, $i * 10%)};
-
+          
+          .color-#{$colorName}-t-#{$i * 100} {
+            color: var(--color-#{$colorName}-t-#{$i * 100});
+          }
+          .color-#{$colorName}-s-#{$i * 100} {
+            color: var(--color-#{$colorName}-s-#{$i * 100});
+          }
         }
       }
     }
@@ -36,6 +42,13 @@ $themes: (
       @for $i from 1 through 9 {
         --color-#{$themeName}-t-#{$i * 100}: #{mix(white, $theme, $i * 10%)};
         --color-#{$themeName}-s-#{$i * 100}: #{mix(black, $theme, $i * 10%)};
+
+        .color-#{$themeName}-t-#{$i * 100} {
+          color: var(--color-#{$themeName}-t-#{$i * 100});
+        }
+        .color-#{$themeName}-s-#{$i * 100} {
+          color: var(--color-#{$themeName}-s-#{$i * 100});
+        }
       }
     }
   }

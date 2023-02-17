@@ -1,9 +1,7 @@
 .PostHero {
   position: relative;
   overflow: hidden;
-  margin: 0 0 var(--g-6) calc(-1 * var(--g-6));
-  width: calc(100% + var(--g-6));
-  padding: var(--g-6) var(--g-5);
+  padding: var(--g-6) 0;
   color: var(--color-text-s-200);
 
   display: flex;
