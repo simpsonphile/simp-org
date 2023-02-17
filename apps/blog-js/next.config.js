@@ -7,7 +7,7 @@ const { withNx } = require('@nrwl/next/plugins/with-nx');
  **/
 const nextConfig = {
   sassOptions: {
-    prependData: `@import "/styles/_media-queries.scss";`,
+    prependData: `@import "libs/blog-js-design-system/src/_breakpoints.scss";`,
   },
   nx: {
     // Set this to true if you would like to to use SVGR

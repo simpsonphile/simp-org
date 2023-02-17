@@ -1,0 +1,38 @@
+$theme: (
+  radius: (
+    sm: 4px,
+    m: 8px
+  ),
+  g: (
+    1: 2px,
+    2: 4px,
+    3: 8px,
+    4: 16px,
+    5: 32px,
+    6: 64px
+  ),
+  fs: (
+    xl: 40px,
+    l: 32px,
+    m: 24px,
+    s: 20px,
+    xs: 16px,
+    xxs: 14px,
+    xxxs: 12px
+  ),
+  lh: (
+    xl: 64px,
+    l: 48px,
+    m: 36px,
+    s: 32px,
+    xs: 24px
+  )
+);
+
+:root {
+  @each $map, $values in $theme {
+    @each $key, $value in $values {
+       --#{$map}-#{$key}: #{$value};
+    }
+  }
+}

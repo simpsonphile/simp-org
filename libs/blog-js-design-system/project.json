@@ -1,0 +1,7 @@
+{
+  "name": "blog-js-design-system",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/blog-js-design-system/src",
+  "projectType": "library",
+  "tags": []
+}

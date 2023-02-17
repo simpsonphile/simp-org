@@ -1,13 +1,11 @@
-@import "styles/colors.scss";
-@import "styles/sizes.scss";
-@import "styles/media-queries.scss";
+@import "/libs/blog-js-design-system/src/index.scss";
 
 :root {
   font-size: 62.5%;
 }
 
 body {
-  font-size: 1.6rem;
+  font-size: var(--fs-xs);
   line-height: 1.5;
   color: var(--color-text);
   background-color: var(--color-bg);

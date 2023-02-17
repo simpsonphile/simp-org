@@ -1,5 +1,3 @@
-
-
 $themes: (
   "text-light": #fcfefe,
   "text-dark": #091319,
@@ -25,19 +23,20 @@ $themes: (
     [data-theme="#{$themeName}"] {
       @each $colorName, $colorValue in $theme {
         --color-#{$colorName}: #{$colorValue};
-        --color-#{$colorName}-t-1: #{mix(white, $colorValue, 10%)};
-        --color-#{$colorName}-t-2: #{mix(white, $colorValue, 20%)};
-        --color-#{$colorName}-s-1: #{mix(black, $colorValue, 10%)};
-        --color-#{$colorName}-s-2: #{mix(black, $colorValue, 20%)};
+        @for $i from 1 through 9 {
+          --color-#{$colorName}-t-#{$i * 100}: #{mix(white, $colorValue, $i * 10%)};
+          --color-#{$colorName}-s-#{$i * 100}: #{mix(black, $colorValue, $i * 10%)};
+
+        }
       }
     }
   } @else {
     :root {
       --color-#{$themeName}: #{$theme};
-      --color-#{$themeName}-t-1: #{mix(white, $theme, 10%)};
-      --color-#{$themeName}-t-2: #{mix(white, $theme, 20%)};
-      --color-#{$themeName}-s-1: #{mix(black, $theme, 10%)};
-      --color-#{$themeName}-s-2: #{mix(black, $theme, 20%)};
+      @for $i from 1 through 9 {
+        --color-#{$themeName}-t-#{$i * 100}: #{mix(white, $theme, $i * 10%)};
+        --color-#{$themeName}-s-#{$i * 100}: #{mix(black, $theme, $i * 10%)};
+      }
     }
   }
 }
