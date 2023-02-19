@@ -3,14 +3,23 @@ import { contract } from '../../hooks/contract';
 import { Table, Thead, Tbody, Tr, Th, TableContainer } from '@chakra-ui/react';
 import { utils } from 'ethers';
 import ShortAddress from '../ShortAddress';
+import { useMemo } from 'react';
 
-const Transactions = ({ event }) => {
+const Transactions = ({ event, filterFunction }) => {
   const logs = useLogs(
     { contract, event, args: [] },
     {
       fromBlock: 0,
       toBlock: 'latest',
     }
+  );
+
+  const messages = useMemo(
+    () =>
+      logs?.value && typeof filterFunction === 'function'
+        ? filterFunction(logs.value)
+        : [],
+    [logs?.value, filterFunction]
   );
 
   if (logs?.error) return logs.error.message;
@@ -28,7 +37,7 @@ const Transactions = ({ event }) => {
         </Thead>
 
         <Tbody>
-          {logs?.value.map((log) => (
+          {messages?.map((log) => (
             <Tr key={log.transactionIndex}>
               <Th>
                 <ShortAddress>
