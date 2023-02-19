@@ -1,0 +1,84 @@
+{
+  "name": "gamble-eth",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/gamble-eth/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/gamble-eth",
+        "index": "apps/gamble-eth/src/index.html",
+        "baseHref": "/",
+        "main": "apps/gamble-eth/src/main.js",
+        "polyfills": "apps/gamble-eth/src/polyfills.js",
+        "tsConfig": "apps/gamble-eth/tsconfig.app.json",
+        "assets": [
+          "apps/gamble-eth/src/favicon.ico",
+          "apps/gamble-eth/src/assets"
+        ],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/gamble-eth/src/environments/environment.js",
+              "with": "apps/gamble-eth/src/environments/environment.prod.js"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "gamble-eth:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "gamble-eth:build:development"
+        },
+        "production": {
+          "buildTarget": "gamble-eth:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/gamble-eth/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/gamble-eth/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

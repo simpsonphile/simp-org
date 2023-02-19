@@ -15,9 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@simp-org/blog-js-design-system": [
-        "libs/blog-js-design-system/src/"
-      ],
+      "@simp-org/blog-js-design-system": ["libs/blog-js-design-system/src/"],
       "@simp-org/photo-services": ["libs/photo-services/src/index.js"],
       "@simp-org/react-context-helpers": [
         "libs/react-context-helpers/src/index.js"
