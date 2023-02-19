@@ -11,13 +11,13 @@ import {
   Heading,
   Button,
 } from '@chakra-ui/react';
-import useDeposit from '../../hooks/deposit';
 import useBalance from '../../hooks/balance';
 import Skeleton from './Skeleton';
+import DepositModal from '../DepositModal';
 const AccountCard = () => {
   const [showWithdrawModal, setShowWithdrawModal] = useState(false);
+  const [showDepositModal, setShowDepositModal] = useState(false);
   const { account } = useEthers();
-  const { deposit } = useDeposit();
   const { value: balance } = useBalance();
 
   const ethBalance = useEtherBalance(account);
@@ -42,13 +42,19 @@ const AccountCard = () => {
         <Button mr="3" onClick={() => setShowWithdrawModal(true)}>
           withdraw
         </Button>
-        <Button onClick={() => deposit('1')}>deposit</Button>
+        <Button onClick={() => setShowDepositModal(true)}>deposit</Button>
       </CardFooter>
 
       {showWithdrawModal && (
         <ClaimWithdrawModal
           isOpen={showWithdrawModal}
           onClose={() => setShowWithdrawModal(false)}
+        />
+      )}
+      {showDepositModal && (
+        <DepositModal
+          isOpen={showDepositModal}
+          onClose={() => setShowDepositModal(false)}
         />
       )}
     </Card>
