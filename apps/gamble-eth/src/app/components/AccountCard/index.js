@@ -32,10 +32,10 @@ const AccountCard = () => {
         <ShortAddress>{account}</ShortAddress>
 
         <Heading size="sm">wallet balance:</Heading>
-        <p className="bold">{formatEther(ethBalance)} ETH</p>
+        <p>{formatEther(ethBalance)} ETH</p>
 
         <Heading size="sm">balance:</Heading>
-        <p className="bold">{formatEther(balance)} ETH</p>
+        <p>{formatEther(balance)} ETH</p>
       </CardBody>
 
       <CardFooter>

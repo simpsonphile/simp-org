@@ -5,6 +5,10 @@ import {
   Tooltip,
   Spinner,
   Heading,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import ETHInput from '../ETHInput';
@@ -28,47 +32,59 @@ const DiceRoll = () => {
   ];
 
   return (
-    <VStack>
-      <Heading>Multipliers</Heading>
-      <HStack justify="center">
-        {multipliers.map((multiplier) => (
-          <Tooltip
-            key={multiplier}
-            label={`${100 / multiplier} % change to win`}
-          >
-            <Button
-              variant={currentMultiplier === multiplier ? 'solid' : 'outline'}
-              onClick={() => setCurrentMultiplier(multiplier)}
-            >
-              x{multiplier}
-            </Button>
-          </Tooltip>
-        ))}
-      </HStack>
+    <Card>
+      <CardHeader>
+        <Heading>DiceRoll Game</Heading>
+      </CardHeader>
+      <CardBody>
+        <VStack>
+          <Heading>Multipliers</Heading>
+          <HStack justify="center">
+            {multipliers.map((multiplier) => (
+              <Tooltip
+                key={multiplier}
+                label={`${100 / multiplier} % change to win`}
+              >
+                <Button
+                  variant={
+                    currentMultiplier === multiplier ? 'solid' : 'outline'
+                  }
+                  onClick={() => setCurrentMultiplier(multiplier)}
+                >
+                  x{multiplier}
+                </Button>
+              </Tooltip>
+            ))}
+          </HStack>
 
-      <Heading>Bet:</Heading>
-      <HStack justify="center">
-        <ETHInput value={value} onChange={({ value }) => setValue(value)} />
+          <Heading>Bet:</Heading>
+          <HStack justify="center">
+            <ETHInput value={value} onChange={({ value }) => setValue(value)} />
 
-        {multiplyCurrentValue.map((el) => (
-          <Button key={el.label} onClick={() => setValue(el.modify)}>
-            {el.label}
-          </Button>
-        ))}
-      </HStack>
+            {multiplyCurrentValue.map((el) => (
+              <Button key={el.label} onClick={() => setValue(el.modify)}>
+                {el.label}
+              </Button>
+            ))}
+          </HStack>
 
-      <Heading>Posible win:</Heading>
-      <Heading>{Number(value) * currentMultiplier}</Heading>
+          <Heading>Posible win:</Heading>
+          <Heading>{Number(value) * currentMultiplier}</Heading>
+        </VStack>
+      </CardBody>
 
-      <Button
-        leftIcon={isLoading && <Spinner />}
-        disabled={isLoading}
-        width="100%"
-        onClick={() => send(value, currentMultiplier)}
-      >
-        Roll!
-      </Button>
-    </VStack>
+      <CardFooter>
+        <Button
+          colorScheme="blue"
+          leftIcon={isLoading && <Spinner />}
+          disabled={isLoading}
+          width="100%"
+          onClick={() => send(value, currentMultiplier)}
+        >
+          Roll!
+        </Button>
+      </CardFooter>
+    </Card>
   );
 };
 

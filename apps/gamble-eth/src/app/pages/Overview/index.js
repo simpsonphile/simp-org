@@ -1,5 +1,5 @@
 import { useEtherBalance, useEthers, useConfig } from '@usedapp/core';
-import { VStack } from '@chakra-ui/react';
+import { HStack, VStack } from '@chakra-ui/react';
 import AccountCard from '../../components/AccountCard';
 import BankAccountCard from '../../components/BankAccountCard';
 import LayoutDefault from '../../layouts/Default';
@@ -20,8 +20,10 @@ const OverviewPage = () => {
   return (
     <LayoutDefault>
       <VStack spacing="6" alignItems="stretch">
-        {ethBankBalance ? <BankAccountCard /> : <BankAccountCard.Skeleton />}
-        {ethBalance ? <AccountCard /> : <AccountCard.Skeleton />}
+        <HStack alignItems="stretch">
+          {ethBankBalance ? <BankAccountCard /> : <BankAccountCard.Skeleton />}
+          {ethBalance ? <AccountCard /> : <AccountCard.Skeleton />}
+        </HStack>
         {ethBalance && <TransactionTabs />}
       </VStack>
     </LayoutDefault>
