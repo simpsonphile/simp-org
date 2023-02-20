@@ -1,7 +1,8 @@
 import { Contract } from 'ethers';
 import { Interface } from 'ethers/lib/utils';
 import { useContractFunction } from '@usedapp/core';
-export const contractAddress = '0xD71F7583333ACeaA936Be60763dF9043fa785555';
+export const contractAddress = process.env.NX_GAME_BANK_ACCOUNT_ADDRESS;
+
 export const ABI = new Interface([
   {
     anonymous: false,
@@ -20,6 +21,37 @@ export const ABI = new Interface([
       },
     ],
     name: 'Deposit',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'player',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'bytes1',
+        name: 'status',
+        type: 'bytes1',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'multiplier',
+        type: 'uint256',
+      },
+    ],
+    name: 'RollDice',
     type: 'event',
   },
   {
@@ -68,6 +100,37 @@ export const ABI = new Interface([
     type: 'function',
   },
   {
+    inputs: [],
+    name: 'getBankBalance',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'multiplier',
+        type: 'uint256',
+      },
+    ],
+    name: 'rollDice',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
     inputs: [
       {
         internalType: 'uint256',
@@ -79,6 +142,10 @@ export const ABI = new Interface([
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
+  },
+  {
+    stateMutability: 'payable',
+    type: 'receive',
   },
 ]);
 

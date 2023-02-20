@@ -1,10 +1,18 @@
 import LayoutDefault from '../../layouts/Default';
-import SlotMachine from '../../components/SlotMachine';
+import DiceRoll from '../../components/DiceRoll';
+import DiceRollEvents from '../../components/DiceRollEvents';
+import { useEthers } from '@usedapp/core';
 
 const GamesPage = () => {
+  const { account } = useEthers();
   return (
     <LayoutDefault>
-      <SlotMachine isTurnedOn={true} />
+      <DiceRoll />
+      <DiceRollEvents
+        filterFunction={(logs) =>
+          logs.filter((log) => log?.data?.player === account)
+        }
+      />
     </LayoutDefault>
   );
 };

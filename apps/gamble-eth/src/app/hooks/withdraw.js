@@ -1,7 +1,7 @@
 import useContract from './contract';
 import { utils } from 'ethers';
 import { useEffect } from 'react';
-import { useToast } from '@chakra-ui/react';
+import useToast from './toast';
 
 const useWithdraw = ({ onSuccess, onError } = {}) => {
   const toast = useToast();
@@ -24,13 +24,11 @@ const useWithdraw = ({ onSuccess, onError } = {}) => {
   useEffect(() => {
     if (events && events?.length) {
       toast({
-        position: 'top-right',
         status: 'success',
         title: 'Withdraw success',
         description: `Successfully withdraw ${utils.formatEther(
           events[0].args[1]
         )} ETH`,
-        duration: 5000,
       });
     }
   }, [events]);
@@ -41,7 +39,6 @@ const useWithdraw = ({ onSuccess, onError } = {}) => {
   }, [status]);
 
   return {
-    state,
     isLoading,
     send: (val) => {
       console.log(utils.parseEther(val));

@@ -8,10 +8,10 @@ import {
   ModalCloseButton,
   Button,
   Spinner,
-  useToast,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import ETHInput from '../ETHInput';
+import useToast from '../../hooks/toast';
 
 const TransferModal = ({
   isOpen,

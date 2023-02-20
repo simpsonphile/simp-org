@@ -1,7 +1,7 @@
 import { utils } from 'ethers';
 import useContract from './contract';
 import { useEffect } from 'react';
-import { useToast } from '@chakra-ui/react';
+import useToast from './toast';
 
 const useDeposit = ({ onSuccess, onError } = {}) => {
   const toast = useToast();
@@ -12,13 +12,11 @@ const useDeposit = ({ onSuccess, onError } = {}) => {
   useEffect(() => {
     if (events && events?.length) {
       toast({
-        position: 'top-right',
         status: 'success',
         title: 'Withdraw success',
         description: `Successfully deposited ${utils.formatEther(
           events[0].args[1]
         )} ETH`,
-        duration: 5000,
       });
     }
   }, [events]);

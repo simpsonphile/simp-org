@@ -1,13 +1,21 @@
-import { useEtherBalance } from '@usedapp/core';
+import { useEtherBalance, useSendTransaction } from '@usedapp/core';
 import { formatEther } from '@ethersproject/units';
-import { Card, CardHeader, CardBody, Heading } from '@chakra-ui/react';
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Heading,
+  Button,
+} from '@chakra-ui/react';
 import Skeleton from './Skeleton';
 import ShortAddress from '../ShortAddress';
-
+import useBankBalance from '../../hooks/bankBalance';
+import { utils } from 'ethers';
 const BankAccountCard = () => {
-  const ethBankBalance = useEtherBalance(
-    process.env.NX_GAME_BANK_ACCOUNT_ADDRESS
-  );
+  const { value: balance } = useBankBalance();
+
+  const { sendTransaction } = useSendTransaction();
 
   const address = process.env.NX_GAME_BANK_ACCOUNT_ADDRESS;
   return (
@@ -20,10 +28,21 @@ const BankAccountCard = () => {
 
         <ShortAddress>{address}</ShortAddress>
 
-        <Heading size="sm">balance:</Heading>
-
-        <p className="bold">{formatEther(ethBankBalance)} ETH</p>
+        <Heading size="sm">main balance:</Heading>
+        <p className="bold">{formatEther(balance)} ETH</p>
       </CardBody>
+      <CardFooter>
+        <Button
+          onClick={() =>
+            sendTransaction({
+              to: process.env.NX_GAME_BANK_ACCOUNT_ADDRESS,
+              value: utils.parseEther('0.1'),
+            })
+          }
+        >
+          Tip 0.1 ETH
+        </Button>
+      </CardFooter>
     </Card>
   );
 };
