@@ -1,7 +1,7 @@
 import { Heading, Flex, Button, HStack } from '@chakra-ui/react';
 import AccountMenu from '../AccountMenu';
 import { Link } from 'react-router-dom';
-import AccountBalance from '../AccountBalance';
+
 const Header = () => {
   return (
     <Flex justifyContent="space-between" py="4">
@@ -14,7 +14,6 @@ const Header = () => {
           Play
         </Button>
         <AccountMenu />
-        <AccountBalance />
       </HStack>
     </Flex>
   );

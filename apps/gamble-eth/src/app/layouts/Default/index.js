@@ -3,7 +3,7 @@ import Header from '../../components/Header';
 
 const LayoutDefault = ({ children }) => {
   return (
-    <Container maxW="container.xl">
+    <Container>
       <Header />
       {children}
     </Container>

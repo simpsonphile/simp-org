@@ -16,8 +16,6 @@ import useBalance from '../../hooks/balance';
 import { formatEther } from '@ethersproject/units';
 import useDice from '../../hooks/dice';
 
-const minBet = 0.01;
-
 const DiceRoll = () => {
   const { send, isLoading } = useDice();
   const [value, setValue] = useState('');
@@ -25,7 +23,7 @@ const DiceRoll = () => {
   const multipliers = [1000, 100, 50, 25, 10, 5, 3, 2];
   const { value: balance } = useBalance();
   const multiplyCurrentValue = [
-    { label: 'min', modify: () => minBet },
+    { label: 'min', modify: () => 0.01 },
     { label: 'x1/2', modify: (val) => val * 0.5 },
     { label: '2', modify: (val) => val * 2 },
     { label: 'max', modify: () => formatEther(balance) }, //todo compute so max is not higher than possible win (so bank dont have negative balance)
@@ -34,11 +32,11 @@ const DiceRoll = () => {
   return (
     <Card>
       <CardHeader>
-        <Heading>DiceRoll Game</Heading>
+        <Heading size="lg">DiceRoll Game</Heading>
       </CardHeader>
       <CardBody>
-        <VStack>
-          <Heading>Multipliers</Heading>
+        <VStack gap="5">
+          <Heading size="md">Multipliers</Heading>
           <HStack justify="center">
             {multipliers.map((multiplier) => (
               <Tooltip
@@ -57,7 +55,7 @@ const DiceRoll = () => {
             ))}
           </HStack>
 
-          <Heading>Bet:</Heading>
+          <Heading size="md">Bet:</Heading>
           <HStack justify="center">
             <ETHInput value={value} onChange={({ value }) => setValue(value)} />
 
@@ -67,9 +65,6 @@ const DiceRoll = () => {
               </Button>
             ))}
           </HStack>
-
-          <Heading>Posible win:</Heading>
-          <Heading>{Number(value) * currentMultiplier}</Heading>
         </VStack>
       </CardBody>
 

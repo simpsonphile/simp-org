@@ -5,6 +5,13 @@ export const contractAddress = process.env.NX_GAME_BANK_ACCOUNT_ADDRESS;
 
 export const ABI = new Interface([
   {
+    inputs: [],
+    name: 'deposit',
+    outputs: [],
+    stateMutability: 'payable',
+    type: 'function',
+  },
+  {
     anonymous: false,
     inputs: [
       {
@@ -29,6 +36,43 @@ export const ABI = new Interface([
       {
         indexed: true,
         internalType: 'address',
+        name: 'winer',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+    ],
+    name: 'Jackpot',
+    type: 'event',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint16',
+        name: 'multiplier',
+        type: 'uint16',
+      },
+    ],
+    name: 'rollDice',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'address',
         name: 'player',
         type: 'address',
       },
@@ -46,13 +90,33 @@ export const ABI = new Interface([
       },
       {
         indexed: false,
-        internalType: 'uint256',
+        internalType: 'uint16',
         name: 'multiplier',
-        type: 'uint256',
+        type: 'uint16',
       },
     ],
     name: 'RollDice',
     type: 'event',
+  },
+  {
+    inputs: [],
+    name: 'rollJackpot',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+    ],
+    name: 'withdraw',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
     anonymous: false,
@@ -72,6 +136,10 @@ export const ABI = new Interface([
     ],
     name: 'Withdrawal',
     type: 'event',
+  },
+  {
+    stateMutability: 'payable',
+    type: 'receive',
   },
   {
     inputs: [
@@ -94,13 +162,6 @@ export const ABI = new Interface([
   },
   {
     inputs: [],
-    name: 'deposit',
-    outputs: [],
-    stateMutability: 'payable',
-    type: 'function',
-  },
-  {
-    inputs: [],
     name: 'getBankBalance',
     outputs: [
       {
@@ -113,39 +174,17 @@ export const ABI = new Interface([
     type: 'function',
   },
   {
-    inputs: [
+    inputs: [],
+    name: 'getJackpot',
+    outputs: [
       {
         internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256',
-      },
-      {
-        internalType: 'uint256',
-        name: 'multiplier',
+        name: '',
         type: 'uint256',
       },
     ],
-    name: 'rollDice',
-    outputs: [],
-    stateMutability: 'nonpayable',
+    stateMutability: 'view',
     type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256',
-      },
-    ],
-    name: 'withdraw',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    stateMutability: 'payable',
-    type: 'receive',
   },
 ]);
 

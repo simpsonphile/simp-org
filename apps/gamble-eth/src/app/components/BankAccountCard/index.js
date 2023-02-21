@@ -1,4 +1,4 @@
-import { useEtherBalance, useSendTransaction } from '@usedapp/core';
+import { useSendTransaction } from '@usedapp/core';
 import { formatEther } from '@ethersproject/units';
 import {
   Card,
@@ -12,8 +12,10 @@ import Skeleton from './Skeleton';
 import ShortAddress from '../ShortAddress';
 import useBankBalance from '../../hooks/bankBalance';
 import { utils } from 'ethers';
+import useJackpotBalance from '../../hooks/jackpotBalance';
 const BankAccountCard = () => {
   const { value: balance } = useBankBalance();
+  const { value: jackpotbalance } = useJackpotBalance();
 
   const { sendTransaction } = useSendTransaction();
 
@@ -25,11 +27,13 @@ const BankAccountCard = () => {
       </CardHeader>
       <CardBody>
         <Heading size="sm">address:</Heading>
-
         <ShortAddress>{address}</ShortAddress>
 
         <Heading size="sm">main balance:</Heading>
         <p className="bold">{formatEther(balance)} ETH</p>
+
+        <Heading size="sm">jackpot:</Heading>
+        <p className="bold">{formatEther(jackpotbalance)} ETH</p>
       </CardBody>
       <CardFooter>
         <Button
