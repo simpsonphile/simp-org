@@ -4,6 +4,7 @@ import { Table, Thead, Tbody, Tr, Th, TableContainer } from '@chakra-ui/react';
 import { utils } from 'ethers';
 import ShortAddress from '../ShortAddress';
 import { useMemo } from 'react';
+import { convertToReadableGameStatus } from '../../services/convertToReadableGameStatus';
 
 const DiceRollEvents = ({ filterFunction }) => {
   const logs = useLogs(
@@ -13,9 +14,6 @@ const DiceRollEvents = ({ filterFunction }) => {
       toBlock: 'latest',
     }
   );
-
-  const toReadableStatus = (char) =>
-    String.fromCharCode(char) === 'l' ? 'LOSE' : 'WIN';
 
   const messages = useMemo(
     () =>
@@ -48,7 +46,7 @@ const DiceRollEvents = ({ filterFunction }) => {
             <Tr
               key={log.transactionIndex}
               background={
-                toReadableStatus(log.data.status) === 'LOSE'
+                convertToReadableGameStatus(log.data.status) === 'LOSE'
                   ? 'red.100'
                   : 'green.100'
               }
@@ -56,7 +54,7 @@ const DiceRollEvents = ({ filterFunction }) => {
               <Th>
                 <ShortAddress>{log.data.player}</ShortAddress>
               </Th>
-              <Th>{toReadableStatus(log.data.status)}</Th>
+              <Th>{convertToReadableGameStatus(log.data.status)}</Th>
               <Th isNumeric>{utils.formatEther(log.data.amount)} ETH</Th>
               <Th isNumeric>{log.data.multiplier}</Th>
               <Th>{log.blockHash}</Th>

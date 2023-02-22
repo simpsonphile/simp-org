@@ -3,9 +3,7 @@ import { utils } from 'ethers';
 import { BigNumber } from 'ethers';
 import useToast from './toast';
 import { useEffect } from 'react';
-
-const toReadableStatus = (char) =>
-  String.fromCharCode(char) === 'l' ? 'LOSE' : 'WIN';
+import { convertToReadableGameStatus } from '../services/convertToReadableGameStatus';
 
 const useDice = ({ onSuccess, onError } = {}) => {
   const { state, send, resetState, events } = useContract('rollDice');
@@ -22,7 +20,7 @@ const useDice = ({ onSuccess, onError } = {}) => {
     if (events && events?.length) {
       const event = events[0];
       const status = event.args.status;
-      const readableStatus = toReadableStatus(status);
+      const readableStatus = convertToReadableGameStatus(status);
       if (readableStatus === 'WIN') {
         toast({
           status: 'success',
