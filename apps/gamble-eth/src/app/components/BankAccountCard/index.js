@@ -1,4 +1,3 @@
-import { useSendTransaction } from '@usedapp/core';
 import { formatEther } from '@ethersproject/units';
 import {
   Card,
@@ -11,13 +10,14 @@ import {
 import Skeleton from './Skeleton';
 import ShortAddress from '../ShortAddress';
 import useBankBalance from '../../hooks/bankBalance';
-import { utils } from 'ethers';
 import useJackpotBalance from '../../hooks/jackpotBalance';
+import TipModal from '../TipModal';
+import { useState } from 'react';
+
 const BankAccountCard = () => {
+  const [isTipModalOpen, setIsTipModalOpen] = useState(false);
   const { value: balance } = useBankBalance();
   const { value: jackpotbalance } = useJackpotBalance();
-
-  const { sendTransaction } = useSendTransaction();
 
   const address = process.env.NX_GAME_BANK_ACCOUNT_ADDRESS;
   return (
@@ -36,17 +36,15 @@ const BankAccountCard = () => {
         <p className="bold">{formatEther(jackpotbalance)} ETH</p>
       </CardBody>
       <CardFooter>
-        <Button
-          onClick={() =>
-            sendTransaction({
-              to: process.env.NX_GAME_BANK_ACCOUNT_ADDRESS,
-              value: utils.parseEther('0.1'),
-            })
-          }
-        >
-          Tip 0.1 ETH
-        </Button>
+        <Button onClick={() => setIsTipModalOpen(true)}>Tip</Button>
       </CardFooter>
+
+      {isTipModalOpen && (
+        <TipModal
+          isOpen={isTipModalOpen}
+          onClose={() => setIsTipModalOpen(false)}
+        />
+      )}
     </Card>
   );
 };

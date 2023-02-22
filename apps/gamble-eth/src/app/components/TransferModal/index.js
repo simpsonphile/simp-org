@@ -25,7 +25,7 @@ const TransferModal = ({
 }) => {
   const toast = useToast();
   const [value, setValue] = useState('');
-  const { send: claimWithdraw, isLoading } = hook({
+  const { send, isLoading } = hook({
     onSuccess: onClose,
     onError: () =>
       toast({
@@ -36,7 +36,7 @@ const TransferModal = ({
   });
 
   const onWithdraw = () => {
-    claimWithdraw(value);
+    send(value);
   };
 
   return (
@@ -62,7 +62,7 @@ const TransferModal = ({
             Close
           </Button>
           <Button
-            disabled={isLoading}
+            isDisabled={isLoading}
             leftIcon={isLoading && <Spinner />}
             colorScheme="blue"
             onClick={onWithdraw}
