@@ -25,6 +25,8 @@ const DiceRollEvents = ({ filterFunction }) => {
     [logs?.value, filterFunction]
   );
 
+  console.log(messages);
+
   if (logs?.error) return logs.error.message;
 
   return (
@@ -56,7 +58,7 @@ const DiceRollEvents = ({ filterFunction }) => {
               </Th>
               <Th>{toReadableStatus(log.data.status)}</Th>
               <Th isNumeric>{utils.formatEther(log.data.amount)} ETH</Th>
-              <Th isNumeric>{utils.formatEther(log.data.multiplier)}</Th>
+              <Th isNumeric>{log.data.multiplier}</Th>
               <Th>{log.blockHash}</Th>
               <Th>{log.transactionHash}</Th>
             </Tr>
