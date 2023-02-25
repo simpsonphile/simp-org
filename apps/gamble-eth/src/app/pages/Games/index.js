@@ -1,18 +1,14 @@
 import LayoutDefault from '../../layouts/Default';
 import DiceRoll from '../../components/DiceRoll';
-import DiceRollEvents from '../../components/DiceRollEvents';
-import { useEthers } from '@usedapp/core';
-
+import DiceRollEventsTabs from '../../components/DiceRollEventsTabs';
+import { VStack } from '@chakra-ui/react';
 const GamesPage = () => {
-  const { account } = useEthers();
   return (
     <LayoutDefault>
-      <DiceRoll />
-      <DiceRollEvents
-        filterFunction={(logs) =>
-          logs.filter((log) => log?.data?.player === account)
-        }
-      />
+      <VStack spacing="6" alignItems="stretch">
+        <DiceRoll />
+        <DiceRollEventsTabs />
+      </VStack>
     </LayoutDefault>
   );
 };

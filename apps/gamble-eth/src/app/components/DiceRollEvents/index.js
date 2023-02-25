@@ -19,7 +19,7 @@ const DiceRollEvents = ({ filterFunction }) => {
     () =>
       logs?.value && typeof filterFunction === 'function'
         ? filterFunction(logs.value)
-        : [],
+        : logs?.value || [],
     [logs?.value, filterFunction]
   );
 
