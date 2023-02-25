@@ -1,4 +1,3 @@
-import { formatEther } from '@ethersproject/units';
 import {
   Card,
   CardHeader,
@@ -6,6 +5,7 @@ import {
   CardFooter,
   Heading,
   Button,
+  VStack,
 } from '@chakra-ui/react';
 import Skeleton from './Skeleton';
 import ShortAddress from '../ShortAddress';
@@ -13,11 +13,12 @@ import useBankBalance from '../../hooks/bankBalance';
 import useJackpotBalance from '../../hooks/jackpotBalance';
 import TipModal from '../TipModal';
 import { useState } from 'react';
+import Amount from '../Amount';
 
 const BankAccountCard = () => {
   const [isTipModalOpen, setIsTipModalOpen] = useState(false);
   const { value: balance } = useBankBalance();
-  const { value: jackpotbalance } = useJackpotBalance();
+  const { value: jackpotBalance } = useJackpotBalance();
 
   const address = process.env.NX_GAME_BANK_ACCOUNT_ADDRESS;
   return (
@@ -25,16 +26,24 @@ const BankAccountCard = () => {
       <CardHeader>
         <Heading size="md">Bank account</Heading>
       </CardHeader>
+
       <CardBody>
-        <Heading size="sm">address:</Heading>
-        <ShortAddress>{address}</ShortAddress>
-
-        <Heading size="sm">main balance:</Heading>
-        <p className="bold">{formatEther(balance)} ETH</p>
-
-        <Heading size="sm">jackpot:</Heading>
-        <p className="bold">{formatEther(jackpotbalance)} ETH</p>
+        <VStack alignItems="flex-start">
+          <div>
+            <Heading size="sm">address:</Heading>
+            <ShortAddress>{address}</ShortAddress>
+          </div>
+          <div>
+            <Heading size="sm">main balance:</Heading>
+            <Amount amount={balance} />
+          </div>
+          <div>
+            <Heading size="sm">jackpot:</Heading>
+            <Amount amount={jackpotBalance} />
+          </div>
+        </VStack>
       </CardBody>
+
       <CardFooter>
         <Button onClick={() => setIsTipModalOpen(true)}>Tip</Button>
       </CardFooter>

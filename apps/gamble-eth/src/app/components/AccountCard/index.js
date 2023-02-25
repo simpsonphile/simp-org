@@ -1,5 +1,4 @@
 import { useEtherBalance, useEthers } from '@usedapp/core';
-import { formatEther } from '@ethersproject/units';
 import ClaimWithdrawModal from '../ClaimWithdrawModal';
 import ShortAddress from '../ShortAddress';
 import { useState } from 'react';
@@ -10,17 +9,20 @@ import {
   CardFooter,
   Heading,
   Button,
+  VStack,
 } from '@chakra-ui/react';
 import useBalance from '../../hooks/balance';
 import Skeleton from './Skeleton';
 import DepositModal from '../DepositModal';
+import Amount from '../Amount';
+
 const AccountCard = () => {
   const [showWithdrawModal, setShowWithdrawModal] = useState(false);
   const [showDepositModal, setShowDepositModal] = useState(false);
   const { account } = useEthers();
   const { value: balance } = useBalance();
 
-  const ethBalance = useEtherBalance(account);
+  const walletBalance = useEtherBalance(account);
 
   return (
     <Card>
@@ -28,14 +30,21 @@ const AccountCard = () => {
         <Heading size="md">Your account</Heading>
       </CardHeader>
       <CardBody>
-        <Heading size="sm">address:</Heading>
-        <ShortAddress>{account}</ShortAddress>
+        <VStack alignItems="flex-start">
+          <div>
+            <Heading size="sm">address:</Heading>
+            <ShortAddress>{account}</ShortAddress>
+          </div>
+          <div>
+            <Heading size="sm">wallet balance:</Heading>
+            <Amount amount={walletBalance} />
+          </div>
 
-        <Heading size="sm">wallet balance:</Heading>
-        <p>{formatEther(ethBalance)} ETH</p>
-
-        <Heading size="sm">balance:</Heading>
-        <p>{formatEther(balance)} ETH</p>
+          <div>
+            <Heading size="sm">balance:</Heading>
+            <Amount amount={balance} />
+          </div>
+        </VStack>
       </CardBody>
 
       <CardFooter>
