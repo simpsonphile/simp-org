@@ -1,14 +1,22 @@
 import LayoutDefault from '../../layouts/Default';
-import DiceRoll from '../../components/DiceRoll';
-import DiceRollEventsTabs from '../../components/DiceRollEventsTabs';
-import { VStack } from '@chakra-ui/react';
+import { HStack } from '@chakra-ui/react';
+import GameCard from '../../components/GameCard';
+
 const GamesPage = () => {
   return (
     <LayoutDefault>
-      <VStack spacing="6" alignItems="stretch">
-        <DiceRoll />
-        <DiceRollEventsTabs />
-      </VStack>
+      <HStack spacing="6" alignItems="stretch">
+        <GameCard
+          title="Plinko"
+          description="This sofa is perfect for modern tropical spaces."
+          url="/games/plinko"
+        />
+        <GameCard
+          title="Dice"
+          description="This sofa is perfect for modern tropical spaces."
+          url="/games/dice"
+        />
+      </HStack>
     </LayoutDefault>
   );
 };

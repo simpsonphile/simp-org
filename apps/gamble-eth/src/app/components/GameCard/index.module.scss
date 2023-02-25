@@ -1,0 +1,13 @@
+.GameCard {
+  position: relative;
+  &:hover .GameCardDescription {
+    opacity: 1;
+  }
+}
+
+.GameCardDescription {
+  position: absolute !important;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .2s;
+}

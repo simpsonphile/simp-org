@@ -6,9 +6,9 @@ import ShortAddress from '../ShortAddress';
 import { useMemo } from 'react';
 import { convertToReadableGameStatus } from '../../services/convertToReadableGameStatus';
 
-const DiceRollEvents = ({ filterFunction }) => {
+const PlinkoEvents = ({ filterFunction }) => {
   const logs = useLogs(
-    { contract, event: 'RollDice', args: [] },
+    { contract, event: 'Plinko', args: [] },
     {
       fromBlock: 0,
       toBlock: 'latest',
@@ -31,7 +31,6 @@ const DiceRollEvents = ({ filterFunction }) => {
         <Thead>
           <Tr>
             <Th>player</Th>
-            <Th>status</Th>
             <Th isNumeric>amount</Th>
             <Th isNumeric>multiplier</Th>
             <Th>BlockHash</Th>
@@ -52,7 +51,6 @@ const DiceRollEvents = ({ filterFunction }) => {
               <Th>
                 <ShortAddress>{log.data.player}</ShortAddress>
               </Th>
-              <Th>{convertToReadableGameStatus(log.data.status)}</Th>
               <Th isNumeric>{utils.formatEther(log.data.amount)} ETH</Th>
               <Th isNumeric>{log.data.multiplier}</Th>
               <Th>{log.blockHash}</Th>
@@ -65,4 +63,4 @@ const DiceRollEvents = ({ filterFunction }) => {
   );
 };
 
-export default DiceRollEvents;
+export default PlinkoEvents;

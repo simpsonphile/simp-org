@@ -11,23 +11,14 @@ import {
   CardFooter,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import ETHInput from '../ETHInput';
-import useBalance from '../../hooks/balance';
-import { formatEther } from '@ethersproject/units';
 import useDice from '../../hooks/dice';
+import Bet from '../Bet';
 
 const DiceRoll = () => {
   const { send, isLoading } = useDice();
   const [value, setValue] = useState('');
   const [currentMultiplier, setCurrentMultiplier] = useState(2);
   const multipliers = [1000, 100, 50, 25, 10, 5, 3, 2];
-  const { value: balance } = useBalance();
-  const multiplyCurrentValue = [
-    { label: 'min', modify: () => 0.01 },
-    { label: 'x1/2', modify: (val) => val * 0.5 },
-    { label: '2', modify: (val) => val * 2 },
-    { label: 'max', modify: () => formatEther(balance) }, //todo compute so max is not higher than possible win (so bank dont have negative balance)
-  ];
 
   return (
     <Card>
@@ -56,15 +47,7 @@ const DiceRoll = () => {
           </HStack>
 
           <Heading size="md">Bet:</Heading>
-          <HStack justify="center">
-            <ETHInput value={value} onChange={({ value }) => setValue(value)} />
-
-            {multiplyCurrentValue.map((el) => (
-              <Button key={el.label} onClick={() => setValue(el.modify)}>
-                {el.label}
-              </Button>
-            ))}
-          </HStack>
+          <Bet value={value} setValue={setValue} />
         </VStack>
       </CardBody>
 
